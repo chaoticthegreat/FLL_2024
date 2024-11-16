@@ -39,7 +39,7 @@ class VideoCapture:
 
 cap = VideoCapture('/dev/video0', cv2.CAP_V4L)
 rf = Roboflow(api_key="riNaV6Wbv5Gc3Nkq9NLl")
-version = rf.workspace().project("rock-paper-scissors-sxsw").version(14)
+version = rf.workspace().project("fish_id_2-ppxou").version(1)
 
 
 
@@ -55,6 +55,7 @@ while x<1000:
 
 
     for bounding_box in prediction.json()['predictions']:
+        if bounding_box["confidence"] <0.40: continue
         x0 = bounding_box['x'] - bounding_box['width'] / 2
         x1 = bounding_box['x'] + bounding_box['width'] / 2
         y0 = bounding_box['y'] - bounding_box['height'] / 2
